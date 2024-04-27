@@ -9,7 +9,7 @@ app.use(express.static('./public'));
 app.use(bodyParser.json());
 let imgArr=["img/slide-1.jpeg","img/slide-2.jpeg","img/slide-3.jpeg","img/slide-4.jpeg","img/slide-5.jpeg"];
 let uriObj={
-    ip:'http://192.168.100.78',
+    ip:'http://127.0.0.1',
     port:'5000'
 }
 
