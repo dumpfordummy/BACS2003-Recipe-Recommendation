@@ -1,7 +1,7 @@
 # BACS2003 AI
 
 ## Environment Setup
-  1. Install Nodejs. Url:
+  1. Install Nodejs. Url:https://nodejs.org/en
   2. cd to "{projectdir}"
   3. pip install flask
 ## Application Execution Step
