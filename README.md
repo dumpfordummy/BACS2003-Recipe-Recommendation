@@ -14,4 +14,4 @@
 ## Note
   1. Delete node_modules folder located in "/node app" if exist
   2. run npm i in the same directory
-  3. pip install "pandas<2.0.0"
+  3. pip install "pandas==1.2.2"
