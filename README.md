@@ -10,3 +10,8 @@
   3. npm install(run this if your npm is not latest version, otherwise ignore this step)
   5. node app.js
   6. In your browser, go to "localhost:3001"
+
+## Note
+  1. Delete node_modules folder located in "/node app"
+  2. run npm i in the same directory
+  3. pip install "pandas<2.0.0"
