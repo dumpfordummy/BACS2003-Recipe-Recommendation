@@ -25,10 +25,10 @@ async function getPopularRecommendations() {
         L.push({
             id: result.RecipeId[index],
             name: result.Name[index],
+            wRating: result.wr[index]
         });
-
-        console.log(result.Name[index]);
     };
+    L.sort((a, b) => b.wRating - a.wRating);
     return L;
 }
 
@@ -206,6 +206,7 @@ app.get('/',(req,res)=>{
                 let temp={}
                 temp.id=obj.id;
                 temp.name=obj.name;
+                temp.wRating=obj.wRating
                 temp.img=dataMap.get(obj.id).images;
                 temp.time=dataMap.get(obj.id).totalTime;
                 temp.category=dataMap.get(obj.id).recipeCategory;
