@@ -112,10 +112,41 @@ async function getContentBasedRecommendations(title) {
             id: result.RecipeId[index],
             name: result.Name[index],
         });
-        console.log(result.Name[index])
     };
     return L;
 }
+
+async function getCollaborativeItemBasedRecommendations() {
+    var likedRecipeList = JSON.parse(localStorage.getItem('likedRecipeList')) || [];
+    let L = [];
+
+    if (likedRecipeList.length !== 0) {
+        // Assuming `uriObj` is defined and contains the IP address and port
+        const uri = `${uriObj.ip}:${uriObj.port}/collaborative`;
+
+        try {
+            const response = await fetch(uri, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ id: likedRecipeList })
+            });
+            const result = await response.json();
+
+            // Assuming your API returns an array of objects with RecipeId and Name properties
+            L = result.map(item => ({
+                id: item.RecipeId,
+                name: item.Name,
+            }));
+        } catch (error) {
+            console.error('Error fetching collaborative recommendations:', error);
+        }
+    }
+
+    return L;
+}
+
 
 async function searchRecipes() {
     let tempOptions = {
@@ -242,14 +273,9 @@ app.get('/recipe',(req,res)=>{
 app.get('/recipes',(req,res)=>{
     res.render('recipes.ejs',{search:false});
 });
-app.get('/search',(req,res)=>{
-    res.render('recipes.ejs',{search:true});
-});
-app.get('/resources', (req, res)=>{
-    res.render('resources.ejs');
-});
-app.get('/subscribe', (req, res)=>{
-    res.render('subscribe.ejs', {success:false});
+
+app.get('/personalised',(req,res)=>{
+    res.render('personalised.ejs');
 });
 
 app.post('/category',(req,res)=>{

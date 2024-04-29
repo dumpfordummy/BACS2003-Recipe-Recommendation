@@ -7,13 +7,25 @@
     <link href="output.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/2ed088eaad.js" crossorigin="anonymous"></script>
-    <script>
-        let crrImgArr=`<%= crrImgArr %>`;
-        crrImgArr=crrImgArr.split(',');
-        let title='home';
-    </script>
     <title>Bongrub</title>
     <link rel="icon" href="img/logo.png">
+    <style>
+        #loader {
+            border: 16px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 16px solid #9c9c9c;
+            width: 120px;
+            height: 120px;
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+</style>
+
+
 </head>
 <body class="bg-orange-50">
     <nav id="navbar" class="sticky pt-4 px-12 top-0 bg-orange-50 z-10"><div class="flex">
@@ -56,52 +68,14 @@
         <div class="h-0.5 w-full bg-mint-500 my-2 rounded-md"></div>
     </nav>
     <object data="img/logo.svg" type="image/svg+xml" class="mx-auto w-1/3"></object>
-    <div id="carousel" class="relative overflow-hidden">
-        <div class="w-1/2 invisible">
-            <img src="img/slide-1.jpeg" alt="" class="w-full">
-        </div>
-    </div>
-    <div class="h-12"></div>
-    <div class="mt-8 mb-16 relative h-0.5 bg-slate-900">
-        <p class="bg-slate-900 text-3xl font-light text-white inline p-4 absolute -top-10 centered-axis-x">Good Food = Good Mood</p>
-    </div>
-
-    <div class="h-8"></div>
-    <div class="mx-12 grid grid-cols-1 md:grid-cols-3 text-xl font-light leading-7 mb-20">
-        <div class="mx-4">
-            <p>Wake'up. It's Food O'Clock 🍕. Food is something that is universal to all of us and it is what binds us together. So this is an attempt to hunt for the best recipes in the world to help crave our taste buds and satisfy our stomach.</p>
-        </div>
-        <div class="mx-4">
-            <p>Here you can find original recipes from around the world and try them on. With recipes ranging from varied categories to some which can be cooked in a few minutes, here we present to you a collection of most popular recipes for you to cherish.</p>
-        </div>
-        <div class="mx-4">
-            <p>This is one of the best original recipe blogs. The blog below contain out-of-this-world recipes, insightful posts on diet trends, and realistic tips to help you eat smarter—whether you're Paleo, vegetarian, gluten-free, or just happen to love food.</p>
-        </div>      
-    </div>
     <div class="font-serif text-4xl text-center">RECIPES</div>
     <div class="h-8"></div>
     <div class="mt-8 mb-16 relative h-0.5 bg-slate-900">
-        <p class="bg-slate-900 text-3xl font-light text-white inline p-4 absolute -top-10 centered-axis-x">Featured recipes</p>
+        <p class="bg-slate-900 text-3xl font-light text-white inline p-4 absolute -top-10 centered-axis-x">Personalised recipes</p>
     </div>
     <div class="h-8"></div>
     <div id="popular" class="grid grid-cols-2 md:grid-cols-4 mx-4">
-        <% popularityArr.forEach((r)=>{ %>
-            <a href="/recipe?id=<%= r.id %>" class="transition duration-150 ease-in-out transform hover:scale-105">
-                <div class="mx-8 my-2">
-                    <img src="<%= r.img[0] %>" alt="" class="mb-4 h-60">
-                    <div class="text-2xl font-normal my-4 flex">
-                        <span><%= r.name %></span>
-                        <span class="flex-auto text-right">WR:<%= r.wRating %></span>
-                    </div>
-                    <div class="bg-gray-400 h-0.5"></div>
-                    <div class="font-light my-4 flex">
-                        <span><i class="fa-solid fa-clock"></i> <%= r.time.slice(2).replace("H"," Hour ").replace("M"," Minutes") %></span>
-                        <span class="flex-auto text-right"><%= r.category %></span>
-                    </div>
-                    <div class="bg-gray-400 h-0.5 mb-4"></div>
-                </div>
-            </a>
-        <% }); %>
+        <div id="loader"></div>
     </div>
     <div class="h-12"></div>
     <div class="hover:text-lime-400 text-darkblue-500 p-4 text-2xl text-center"><a href="/recipes">Explore More Recipes <i class="fa-solid fa-plate-utensils mx-2"></i></a></div>
@@ -122,6 +96,6 @@
         <!-- <div class="h-96 bg-slate-800">Icons</div> -->
     </div>
     <script src="index.js"></script>
-    <script src="home.js"></script>
+    <script src="personalised.js"></script>
 </body>
 </html>

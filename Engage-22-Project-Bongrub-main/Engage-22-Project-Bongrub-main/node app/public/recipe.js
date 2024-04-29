@@ -12,6 +12,6 @@ function addToLocalStorage(recipeId) {
         likedRecipeList = likedRecipeList.concat(recipeId);
 
         localStorage.setItem('likedRecipeList', JSON.stringify(likedRecipeList));
+        localStorage.setItem('requireUpdate', true);
     }
-
 }

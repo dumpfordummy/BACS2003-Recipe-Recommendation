@@ -1,5 +1,4 @@
 const popularRecipieDiv=document.getElementById('popular');
-//console.log(popIDArr);
 const carousel=document.getElementById("carousel");
 const imgDiv=document.createElement("div");
 function imageTemplate(){
@@ -56,3 +55,5 @@ function endTimer(){
 startTimer();
 carousel.addEventListener('mouseenter',endTimer);
 carousel.addEventListener('mouseleave',startTimer);
+
+
