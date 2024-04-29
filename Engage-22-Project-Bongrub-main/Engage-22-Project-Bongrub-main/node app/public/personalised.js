@@ -6,15 +6,18 @@ const loadingUI = document.getElementById('loader');
 
 loadingUI.style.display = 'block';
 
+const regex = /c\("([^"]+)"/;
+
 personalisedRecipeList.then(response => {
     let idArr = response.RecipeId;
     let imageArr = response.Images;
     let nameArr = response.Name;
     let totalTimeArr = response.TotalTime;
     let categoryArr = response.RecipeCategory;
-
+    console.log(response);
     for(let i = 0; i < Object.keys(idArr).length; i++) {
-        appendRecipe(container, idArr[i], imageArr[i][0], nameArr[i], totalTimeArr[i], categoryArr[i]);
+        const match = imageArr[i].match(regex);
+        appendRecipe(container, idArr[i], match[1], nameArr[i], totalTimeArr[i], categoryArr[i]);
     }
 });
 
@@ -43,10 +46,8 @@ function appendRecipe(element, id, img, name, time, category) {
 async function getPersonalisedRecipe() {
     var personalisedRecipeList;
     var likedRecipeList = JSON.parse(localStorage.getItem('likedRecipeList')) || [];
-    var requireUpdate = localStorage.getItem('requireUpdate');
-    if (requireUpdate && likedRecipeList.length !== 0) {
+    if (likedRecipeList.length !== 0) {
         personalisedRecipeListPromise = await fetchAndProcessData(likedRecipeList);
-        localStorage.setItem('requireUpdate', false);
     } else {
         personalisedRecipeListPromise = Promise.resolve(null);
     }
