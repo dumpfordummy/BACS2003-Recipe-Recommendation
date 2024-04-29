@@ -4,6 +4,7 @@
   1. Install Nodejs. Url:[download](https://nodejs.org/dist/v20.12.2/node-v20.12.2-x64.msi)
   2. cd to "{projectdir}"
   3. pip install flask
+  4. pip install fuzzywuzzy
 ## Application Execution Step
   1. In jupyter notebook, run the recipeapp.ipynb
   2. cd to "{projectdir}/node app"
