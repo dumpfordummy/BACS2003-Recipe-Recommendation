@@ -5,6 +5,7 @@
   2. cd to "{projectdir}"
   3. pip install flask
   4. pip install fuzzywuzzy
+  5. pip install -U flask-cors
 ## Application Execution Step
   1. In jupyter notebook, run the recipeapp.ipynb
   2. cd to "{projectdir}/node app"
