@@ -17,6 +17,7 @@
         let recipeRating=parseInt("<%=aggregatedRating%>");
         let title='home';
     </script>
+    <script src="recipe.js"></script>
     <title><%= name %></title>
     <link rel="icon" href="img/logo.png">
 </head>
@@ -106,8 +107,8 @@
                         <td class="font-light text-gray-700"><%= totalTime.slice(2).replace("H"," Hour ").replace("M"," Minutes") %></td>
                     </tr>
                     <tr>
-                        <td>
-                            <button onclick="addToLocalStorage(<%= id %>)" style=" border: 2px solid black; color: blue">Like!</button>
+                        <td id="likeBtn">
+
                         </td>
                     </tr>
                 </table>
@@ -123,8 +124,11 @@
                 <% recipeIngredientParts.forEach((inc,ind)=>{ %>
                     <tr>
                         <td><i class="fa-solid fa-circle-check"></i></td>
-                        <td><%= inc.slice(0,1).toUpperCase()+inc.slice(1) %></td>
-                        <td><%= recipeIngredientQuantities[ind].slice(0,1).toUpperCase()+recipeIngredientQuantities[ind].slice(1) %></td>
+                        <td><%= inc.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()}); %></td>
+                        <td><% recipeIngredientQuantities[ind] %></td>
+                        <!--<td><%# inc.slice(0,1).toUpperCase()+inc.slice(1) %></td>-->
+                        <!--<td><%# recipeIngredientQuantities[ind].slice(0,1).toUpperCase()+recipeIngredientQuantities[ind].slice(1) %></td>-->
+
                     </tr>
                 <% }); %>
             </table>
@@ -228,7 +232,17 @@
         </div>
         <!-- <div class="h-96 bg-slate-800">Icons</div> -->
     </div>
-    <script src="recipe.js"></script>
     <script src="index.js"></script>
+    <script>
+        var td = document.getElementById("likeBtn");
+        const recipeID = <%- id %>;
+
+        if (isLikedRecipe(recipeID)){
+            td.innerHTML += `<button style=" color: black" disabled>Liked!</button>`;
+        } else {
+            td.innerHTML += `<button onclick="addToLocalStorage(${ recipeID })" style=" border: 2px solid black; color: blue">Like!</button>`;
+        }
+
+    </script>
 </body>
 </html>

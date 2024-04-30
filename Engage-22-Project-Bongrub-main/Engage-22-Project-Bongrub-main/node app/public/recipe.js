@@ -13,4 +13,14 @@ function addToLocalStorage(recipeId) {
 
         localStorage.setItem('likedRecipeList', JSON.stringify(likedRecipeList));
     }
+
+    location.reload();
+}
+
+function isLikedRecipe(recipeId) {
+    var likedRecipeList = JSON.parse(localStorage.getItem('likedRecipeList')) || [];
+    if (likedRecipeList.includes(recipeId))
+        return true;
+    else
+        return false;
 }

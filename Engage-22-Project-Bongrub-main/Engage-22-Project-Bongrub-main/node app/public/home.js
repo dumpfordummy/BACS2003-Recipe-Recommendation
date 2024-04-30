@@ -1,6 +1,10 @@
 const popularRecipieDiv=document.getElementById('popular');
+//console.log(popIDArr);
+const likedRecipeArr = getLikedRecipeList();
 const carousel=document.getElementById("carousel");
 const imgDiv=document.createElement("div");
+
+
 function imageTemplate(){
     const img=document.createElement('img');
     img.classList.add('w-1/2');
@@ -56,4 +60,7 @@ startTimer();
 carousel.addEventListener('mouseenter',endTimer);
 carousel.addEventListener('mouseleave',startTimer);
 
-
+//get liked recipe list
+function getLikedRecipeList() {
+    return JSON.parse(localStorage.getItem('likedRecipeList')) || [];
+}

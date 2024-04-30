@@ -7,10 +7,14 @@
     <link href="output.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/2ed088eaad.js" crossorigin="anonymous"></script>
+    <script src="home.js"></script>
     <script>
         let crrImgArr=`<%= crrImgArr %>`;
         crrImgArr=crrImgArr.split(',');
         let title='home';
+        var popArr = <%- JSON.stringify(popularityArr) %>;
+
+        likedArr = getLikedRecipeList();
     </script>
     <title>Bongrub</title>
     <link rel="icon" href="img/logo.png">
@@ -76,8 +80,18 @@
         </div>
         <div class="mx-4">
             <p>This is one of the best original recipe blogs. The blog below contain out-of-this-world recipes, insightful posts on diet trends, and realistic tips to help you eat smarter—whether you're Paleo, vegetarian, gluten-free, or just happen to love food.</p>
-        </div>      
+        </div>
     </div>
+
+    <div class="h-8"></div>
+    <div class="mt-8 mb-16 relative h-0.5 bg-slate-900">
+        <p class="bg-slate-900 text-3xl font-light text-white inline p-4 absolute -top-10 centered-axis-x">You liked these recipes</p>
+    </div>
+    <div class="h-8"></div>
+    <div id="liked" class="grid grid-cols-2 md:grid-cols-4 mx-4">
+    </div>
+    <div class="h-8"></div>
+
     <div class="font-serif text-4xl text-center">RECIPES</div>
     <div class="h-8"></div>
     <div class="mt-8 mb-16 relative h-0.5 bg-slate-900">
@@ -122,6 +136,33 @@
         <!-- <div class="h-96 bg-slate-800">Icons</div> -->
     </div>
     <script src="index.js"></script>
-    <script src="home.js"></script>
+    <script>
+        var div = document.getElementById("liked");
+        if (likedArr.length != 0){
+            for (let i = 0; i < popArr.length; i++){
+                for (let m = 0; m < likedArr.length; m++){
+                    if (popArr[i].id == likedArr[m]){
+                        div.innerHTML += `  <a href="/recipe?id=${ popArr[i].id }" class="transition duration-150 ease-in-out transform hover:scale-105">
+                                            <div class="mx-8 my-2">
+                                            <img src="${ popArr[i].img[0] }" alt="" class="mb-4 h-60">
+                                            <div class="text-2xl font-normal my-4 flex">
+                                            <span>${ popArr[i].name }</span>
+                                            <span class="flex-auto text-right">WR:${ popArr[i].wRating }</span></div>
+                                            <div class="bg-gray-400 h-0.5"></div>
+                                            <div class="font-light my-4 flex">
+                                            <span><i class="fa-solid fa-clock"></i> ${ popArr[i].time.slice(2).replace("H"," Hour ").replace("M"," Minutes") }</span>
+                                            <span class="flex-auto text-right">${ popArr[i].category }</span></div>
+                                            <div class="bg-gray-400 h-0.5 mb-4"></div></div></a>`;
+                    }
+                }
+            }
+        } else {
+            div.classList.remove("grid");
+            div.classList.remove("grid-cols-2");
+            div.classList.remove("md:grid-cols-4");
+            div.classList.remove("mx-4");
+            div.innerHTML += ` <p style="margin: 3rem 0 3rem; font-size: 28px; text-align:center;">You do not have any liked recipes yet!</p> `;
+        }
+    </script>
 </body>
 </html>
