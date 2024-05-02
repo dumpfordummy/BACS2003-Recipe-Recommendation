@@ -6,7 +6,7 @@
   3. pip install flask
   4. pip install fuzzywuzzy
   5. pip install -U flask-cors
-  6. pip install "pandas==1.2.2"
+  6. pip install "pandas==1.5.3"
 ## Application Execution Step
   1. In jupyter notebook, run the recipeapp.ipynb
   2. cd to "{projectdir}/node app"
