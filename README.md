@@ -11,6 +11,7 @@
   1. In jupyter notebook, run the recipeapp.ipynb
   2. cd to "{projectdir}/node app"
   3. npm install(run this if your npm is not latest version, otherwise ignore this step)
+  4. npm install express (if missing)
   5. node app.js
   6. In your browser, go to "localhost:3001"
 
