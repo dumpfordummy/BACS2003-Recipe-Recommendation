@@ -18,7 +18,8 @@ personalisedRecipeList.then(response => {
     let previousRecommendedId = -1;
 
     for(let i = 0; i < Object.keys(idArr).length; i++) {
-        const match = imageArr[i].match(regex);
+        const match = imageArr[i].match(regex) ?? imageArr[i][0];
+
         if(previousRecommendedId != sourceRecipeId[i] || previousRecommendedId == -1) {
             printRecommendSourceId(container, sourceRecipeId[i]);
             previousRecommendedId = sourceRecipeId[i]
