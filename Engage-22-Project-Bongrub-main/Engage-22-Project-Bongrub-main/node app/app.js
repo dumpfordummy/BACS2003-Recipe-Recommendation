@@ -278,6 +278,10 @@ app.get('/personalised',(req,res)=>{
     res.render('personalised.ejs');
 });
 
+app.get('/knn',(req,res)=>{
+    res.render('knn.ejs');
+});
+
 app.post('/category',(req,res)=>{
     getCategoryBasedRecommendations(req.body.category).then((l)=>{
         let catArr = [];
