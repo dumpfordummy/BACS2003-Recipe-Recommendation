@@ -335,11 +335,3 @@ process.on('uncaughtException', function (err) {
 app.listen(3001,()=>{
     console.log("Server Up!");
 });
-
-
-
-//API Key for Mailchimp
-//9d129ae6293e16a80cde0e21302789f5-us18
-
-//List id for Mailchimp Bongrub
-//52ec9af195
