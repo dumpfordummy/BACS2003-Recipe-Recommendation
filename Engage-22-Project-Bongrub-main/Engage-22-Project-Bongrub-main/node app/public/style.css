@@ -2,3 +2,7 @@
     left: 50%;
     transform: translate(-50%, 0);
 }
+
+.child-span-4 {
+    grid-column: span 4;
+}

@@ -14,12 +14,27 @@ personalisedRecipeList.then(response => {
     let nameArr = response.Name;
     let totalTimeArr = response.TotalTime;
     let categoryArr = response.RecipeCategory;
-    console.log(response);
+    let sourceRecipeId = response.SourceRecipeId;
+    let previousRecommendedId = -1;
+
     for(let i = 0; i < Object.keys(idArr).length; i++) {
         const match = imageArr[i].match(regex);
-        appendRecipe(container, idArr[i], match[1], nameArr[i], totalTimeArr[i], categoryArr[i]);
+        if(previousRecommendedId != sourceRecipeId[i] || previousRecommendedId == -1) {
+            printRecommendSourceId(container, sourceRecipeId[i]);
+            previousRecommendedId = sourceRecipeId[i]
+        }
+        appendRecipe(container, idArr[i], match[1], nameArr[i], totalTimeArr[i], categoryArr[i], sourceRecipeId[i]);
     }
 });
+
+function printRecommendSourceId(element, sourceRecipeId) {
+    var placeholder = `
+        <div class="text-2xl font-normal my-4 child-span-4">
+            <span>You may also like because you liked <a href="/recipe?id=${sourceRecipeId}" style="color: blue; text-decoration: underline;">${sourceRecipeId}</a>  </span>
+        </div>
+    `
+    element.innerHTML += placeholder;
+}
 
 function appendRecipe(element, id, img, name, time, category) {
     var placeholder = `
