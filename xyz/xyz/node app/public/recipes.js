@@ -43,6 +43,7 @@ function listToDiv(list, div){
                 <div class="mx-8 my-2">
                     <img src="${r.img[0]}" alt="" class="mb-4 h-60">
                     <div class="text-2xl font-normal my-4">${r.name}</div>
+                    <div class="text-2xl font-normal my-4">WR: ${r.wr}</div>
                     <div class="bg-gray-400 h-0.5"></div>
                     <div class="font-light my-4 flex">
                         <span class="flex-none"><i class="fa-solid fa-clock"></i> ${r.time.slice(2).replace("H"," Hour ").replace("M"," Minutes")}</span>
@@ -138,7 +139,6 @@ autocomplete({
 });
 function scrollToSearch(){
     const divElement=document.getElementById('search');
-    console.log(divElement);
     divElement.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
 }
 if(search=='true') scrollToSearch();

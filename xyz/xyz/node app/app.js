@@ -48,8 +48,10 @@ async function getCategoryBasedRecommendations(title) {
         L.push({
             id: result.RecipeId[index],
             name: result.Name[index],
+            wr: result.wr[index]
         });
     };
+    L.sort((a, b) => b.wr - a.wr);
     return L;
 }
 
@@ -292,6 +294,7 @@ app.post('/category',(req,res)=>{
                 let temp={}
                 temp.id=obj.id;
                 temp.name=obj.name;
+                temp.wr=obj.wr;
                 temp.img=dataMap.get(obj.id).images;
                 temp.time=dataMap.get(obj.id).totalTime;
                 temp.category=dataMap.get(obj.id).recipeCategory;
