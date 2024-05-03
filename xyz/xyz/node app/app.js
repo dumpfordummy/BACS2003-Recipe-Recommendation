@@ -111,6 +111,7 @@ async function getContentBasedRecommendations(title) {
         L.push({
             id: result.RecipeId[index],
             name: result.Name[index],
+            similarity: result.Similarity[index]
         });
     };
     return L;
@@ -260,6 +261,7 @@ app.get('/recipe',(req,res)=>{
                 let temp={}
                 temp.id=obj.id;
                 temp.name=obj.name;
+                temp.similarity=obj.similarity;
                 temp.img=dataMap.get(obj.id).images;
                 temp.time=dataMap.get(obj.id).totalTime;
                 temp.category=dataMap.get(obj.id).recipeCategory;

@@ -15,6 +15,7 @@ personalisedRecipeList.then(response => {
     let totalTimeArr = response.TotalTime;
     let categoryArr = response.RecipeCategory;
     let sourceRecipeId = response.SourceRecipeId;
+    let distance = response.Distance;
     let previousRecommendedId = -1;
 
     for(let i = 0; i < Object.keys(idArr).length; i++) {
@@ -24,7 +25,7 @@ personalisedRecipeList.then(response => {
             printRecommendSourceId(container, sourceRecipeId[i]);
             previousRecommendedId = sourceRecipeId[i]
         }
-        appendRecipe(container, idArr[i], match[1], nameArr[i], totalTimeArr[i], categoryArr[i], sourceRecipeId[i]);
+        appendRecipe(container, idArr[i], match[1], nameArr[i], totalTimeArr[i], categoryArr[i], distance[i]);
     }
 });
 
@@ -37,7 +38,7 @@ function printRecommendSourceId(element, sourceRecipeId) {
     element.innerHTML += placeholder;
 }
 
-function appendRecipe(element, id, img, name, time, category) {
+function appendRecipe(element, id, img, name, time, category, distance) {
     var placeholder = `
         <a href="/recipe?id=${id}" class="transition duration-150 ease-in-out transform hover:scale-105">
             <div class="mx-8 my-2">
@@ -45,6 +46,10 @@ function appendRecipe(element, id, img, name, time, category) {
                 <div class="text-2xl font-normal my-4">
                     <span>${name}</span>
                 </div>
+                <div class="text-2xl font-normal my-4">
+                    <span>Distance: ${distance}</span>
+                </div>
+
                 <div class="bg-gray-400 h-0.5"></div>
                     <div class="font-light my-4 flex">
                         <span class="flex-none"><i class="fa-solid fa-clock"></i> ${ time.slice(2).replace("H"," Hour ").replace("M"," Minutes") }</span>
